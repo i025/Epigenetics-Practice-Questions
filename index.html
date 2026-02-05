@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>表观遗传特训营</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container home-container">
+        <header class="home-header">
+            <h1>🧬 表观遗传刷题库</h1>
+            <p>Epigenetics Master</p>
+        </header>
+
+        <nav class="level-nav">
+            <a href="practice.html?level=easy" class="card level-easy">
+                <div class="icon">🌱</div>
+                <div class="text">
+                    <h3>简单基础</h3>
+                    <span>概念与定义</span>
+                </div>
+            </a>
+            <a href="practice.html?level=medium" class="card level-medium">
+                <div class="icon">🌿</div>
+                <div class="text">
+                    <h3>进阶提升</h3>
+                    <span>机制与原理</span>
+                </div>
+            </a>
+            <a href="practice.html?level=hard" class="card level-hard">
+                <div class="icon">🌳</div>
+                <div class="text">
+                    <h3>困难挑战</h3>
+                    <span>综合分析</span>
+                </div>
+            </a>
+            <a href="practice.html?level=gaokao" class="card level-gaokao">
+                <div class="icon">🎓</div>
+                <div class="text">
+                    <h3>高考真题</h3>
+                    <span>历年精选</span>
+                </div>
+            </a>
+        </nav>
+
+        <div class="wrong-book-section">
+            <a href="practice.html?mode=wrong" class="btn-wrong" id="wrongBtn">
+                错题重做 <span class="badge" id="wrongCount">0</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 初始化：读取错题数量
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrongSet = JSON.parse(localStorage.getItem('epigenetics_wrong_book') || '[]');
+            const count = wrongSet.length;
+            const badge = document.getElementById('wrongCount');
+            const btn = document.getElementById('wrongBtn');
+            
+            badge.textContent = count;
+            
+            if(count === 0) {
+                btn.classList.add('disabled');
+                btn.onclick = (e) => {
+                    e.preventDefault();
+                    alert('太棒了！目前没有错题记录。');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
